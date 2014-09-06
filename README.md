@@ -1,4 +1,4 @@
-# fantasy\_florist
+# Fantasy Florist
 
 a sweet li'l robot florist that'll tell you all about fantastic flowers. tweets: [@fantasy\_florist](https://twitter.com/fantasy_florist "fantasy_florist on Twitter")
 
