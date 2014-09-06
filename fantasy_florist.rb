@@ -1,4 +1,4 @@
 require 'require_all'
-require_all 'app'
+require_rel 'app'
 
 puts MasterCombinator.new.generate
