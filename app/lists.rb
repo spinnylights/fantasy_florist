@@ -610,7 +610,7 @@ module FlavorList
       "A-1 sauce",
       "Bearnaise sauce",
       "Hollandaise sauce",
-      "LiveJournal".
+      "LiveJournal",
       "Lombardy",
       "Madagascar",
       "McMurdo Station",
@@ -693,7 +693,7 @@ module FlavorList
       "murder",
       "newspaper",
       "nickels",
-      "nuclear power".
+      "nuclear power",
       "obsidian",
       "pastry cream",
       "peach candy",
