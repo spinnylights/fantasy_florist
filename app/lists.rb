@@ -539,7 +539,6 @@ module FruitTypeList
       'news anchor',
       'nomadic community',
       'nonlinear partial differential equation',
-      'number',
       'nut',
       'oil painting',
       'pearl',
