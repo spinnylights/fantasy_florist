@@ -509,7 +509,6 @@ module FruitTypeList
       'feather',
       'fictional company',
       'genetic disorder',
-      'ghostwriter',
       'glycoprotein',
       'gotterdammerung',
       'grain silo',
