@@ -15,6 +15,29 @@ class Generator
   attr_reader :string_list
 end
 
+class FlowerNameGenerator
+  def generate
+    "#{flower_name_comb.generate}"
+  end
+
+  private
+
+  def flower_name_comb
+    SimpleCombinator.new(
+      floral_prefix_gen,
+      flower_name_gen
+    )
+  end
+
+  def floral_prefix_gen
+    Generator.new( FloralPrefixList.list )
+  end
+
+  def flower_name_gen
+    Generator.new( FlowerNameList.list )
+  end
+end
+
 class FlavorGenerator
   def generate
     'Tastes of ' + FlavorList.sample + '. '
@@ -230,7 +253,7 @@ end
 class MasterCombinator
   def generate
     str = pre_generate
-    if check_char_count( str )
+    if CharChecker.new.check_char_count( str )
       str
     else
       generate
@@ -238,6 +261,10 @@ class MasterCombinator
   end
 
   private
+
+  def flower_name
+    FlowerNameGenerator.new.generate + ": "
+  end
 
   def pre_generate
     str = []
@@ -249,18 +276,6 @@ class MasterCombinator
     str.unshift( flower_desc )
     str.unshift( flower_name )
     str.join
-  end
-
-  def check_char_count( str )
-    if str.length > char_count
-      false
-    else
-      true
-    end
-  end
-
-  def char_count
-    140
   end
 
   def pick_one( one, two )
@@ -299,10 +314,6 @@ class MasterCombinator
     end
   end
 
-  def flower_name
-    "#{flower_name_comb.generate}: "
-  end
-
   def life_cycle_type
     "#{life_cycle_type_gen.generate}. "
   end
@@ -328,14 +339,6 @@ class MasterCombinator
     AOrAn.a_or_an( word )
   end
 
-  def floral_prefix_gen
-    Generator.new( FloralPrefixList.list )
-  end
-
-  def flower_name_gen
-    Generator.new( FlowerNameList.list )
-  end
-
   def life_cycle_type_gen
     Generator.new( LifeCycleTypeList.list )
   end
@@ -347,11 +350,52 @@ class MasterCombinator
   def edibility_gen
     Generator.new( EdibilityList.list )
   end
+end
 
-  def flower_name_comb
-    SimpleCombinator.new(
-      floral_prefix_gen,
-      flower_name_gen
-    )
+class ReplyCombinator
+  def generate
+    reply = sub_flower_name( get_reply ) 
+    if CharChecker.new.check_char_count( reply )
+      reply
+    else
+      generate
+    end
+  end
+
+  private
+
+  def get_reply
+    RepliesList.list.sample
+  end
+
+  def sub_flower_name( str )
+    sub_list.each do |sub|
+      str.gsub!(sub, FlowerNameGenerator.new.generate)
+    end
+    str
+  end
+
+  def sub_list
+    [
+      "XX",
+      "YY",
+      "ZZ",
+      "AA",
+      "BB",
+    ]
   end
 end
+
+class CharChecker
+  def check_char_count( str )
+    if str.length > char_count
+      false
+    else
+      true
+    end
+  end
+
+  def char_count
+    140
+  end
+end 

@@ -33,6 +33,14 @@ class GenDoubleTwo
   end
 end
 
+class FlowerNameGeneratorTest < MiniTest::Test
+  include GeneratorInterfaceTest
+
+  def setup
+    @gen = @object = FlowerNameGenerator.new
+  end
+end
+
 class SimpleCombinatorTest < MiniTest::Test
   include GeneratorInterfaceTest
 
@@ -65,5 +73,13 @@ class MasterCombinatorTest < MiniTest::Test
 
   def setup
     @gen = @object = MasterCombinator.new
+  end
+end
+
+class ReplyCombinatorTest < MiniTest::Test
+  include GeneratorInterfaceTest
+
+  def setup
+    @gen = @object = ReplyCombinator.new
   end
 end
