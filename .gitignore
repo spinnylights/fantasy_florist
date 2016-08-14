@@ -1,3 +1,2 @@
-*.sw*
-reply.yml
 auth.yml
+last_replied_mention.txt
