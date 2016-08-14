@@ -5,7 +5,9 @@ require_rel 'app'
 
 client = ClientGenerator.new.get_client
 
-last_replied_mention_id = File.open('./last_replied_mention.txt') {|f| f.read}.to_i
+last_replied_mention_path = File.dirname(__FILE__) + '/last_replied_mention.txt'
+
+last_replied_mention_id = File.open(last_replied_mention_path) {|f| f.read}.to_i
 
 def gen_reply(sn_to_reply)
   reply_content = ReplyCombinator.new.generate
